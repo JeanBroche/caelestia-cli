@@ -7,7 +7,9 @@ from caelestia.utils.scheme import (
     get_scheme_flavours,
     get_scheme_modes,
     get_scheme_names,
+    get_custom_scheme_names,
     scheme_variants,
+    get_scheme_dir,
 )
 from caelestia.utils.theme import apply_colours
 
@@ -96,9 +98,10 @@ class List:
         else:
             current_scheme = get_scheme()
             schemes = {}
-            for scheme in get_scheme_names():
+            for scheme in get_scheme_names() + get_custom_scheme_names():
+                scheme_dir = get_scheme_dir(scheme)
                 schemes[scheme] = {}
-                for flavour in get_scheme_flavours(scheme):
+                for flavour in get_scheme_flavours(scheme_dir, scheme):
                     s = Scheme(
                         {
                             "name": scheme,
@@ -106,9 +109,10 @@ class List:
                             "mode": current_scheme.mode,
                             "variant": current_scheme.variant,
                             "colours": current_scheme.colours,
+                            "dir": scheme_dir,
                         }
                     )
-                    modes = get_scheme_modes(scheme, flavour)
+                    modes = get_scheme_modes(scheme_dir, scheme, flavour)
                     if s.mode not in modes:
                         s._mode = modes[0]
                     try:

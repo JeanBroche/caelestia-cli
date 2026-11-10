@@ -20,6 +20,7 @@ c_state_dir: Path = state_dir / "caelestia"
 c_cache_dir: Path = cache_dir / "caelestia"
 
 user_config_path: Path = c_config_dir / "cli.json"
+user_schemes_dir: Path = c_config_dir / "schemes"
 cli_data_dir: Path = Path(__file__).parent.parent / "data"
 templates_dir: Path = cli_data_dir / "templates"
 user_templates_dir: Path = c_config_dir / "templates"

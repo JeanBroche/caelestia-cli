@@ -19,7 +19,7 @@ from caelestia.utils.dots.packages import AUR_HELPERS
 from caelestia.utils.dots.source import DotsSource
 from caelestia.utils.io import warn
 from caelestia.utils.paths import wallpapers_dir
-from caelestia.utils.scheme import get_scheme_names, scheme_variants
+from caelestia.utils.scheme import get_custom_scheme_names, get_scheme_names, scheme_variants
 from caelestia.utils.wallpaper import get_wallpaper
 
 
@@ -70,7 +70,7 @@ def parse_args() -> tuple[argparse.ArgumentParser, argparse.Namespace]:
     set_parser.set_defaults(cls=scheme.Set)
     set_parser.add_argument("--notify", action="store_true", help="send a notification on error")
     set_parser.add_argument("-r", "--random", action="store_true", help="switch to a random scheme")
-    set_parser.add_argument("-n", "--name", choices=get_scheme_names(), help="the name of the scheme to switch to")
+    set_parser.add_argument("-n", "--name", choices=get_scheme_names() + get_custom_scheme_names(), help="the name of the scheme to switch to")
     set_parser.add_argument("-f", "--flavour", help="the flavour to switch to")
     set_parser.add_argument("-m", "--mode", choices=["dark", "light"], help="the mode to switch to")
     set_parser.add_argument("-v", "--variant", choices=scheme_variants, help="the variant to switch to")
